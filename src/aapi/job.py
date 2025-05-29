@@ -1607,6 +1607,15 @@ class JobSAPR3CREATE(JobSAPR3):
             kw_only=True, default=None, metadata={'_aapi_repr_': 'JobCompletionStatusWillDependOnApplicationStatus'})
 
     @attrs.define
+    class SAPJobStep(AAPIObject):
+        variant: str = attrs.field(
+            kw_only=True, default=None, metadata={'__aapi_repr_': 'VariantName'})
+        program_name: str = attrs.field(
+            kw_only=True, default=None, metadata={'_aapi_repr_': 'ProgramName'})
+        step_type: str = attrs.field(
+            kw_only=True, default="ABAP", metadata={'_aapi_repr_': 'StepType'})
+
+    @attrs.define
     class DetectSpawnedJob(AAPIObject):
 
         class DetectAndCreate(enum.Enum):
@@ -1703,6 +1712,8 @@ class JobSAPR3CREATE(JobSAPR3):
         kw_only=True, default=None, metadata={'_aapi_repr_': 'DetectSpawnedJob'})
     spool_list_recipient: SpoolListRecipient = attrs.field(
         kw_only=True, default=None, metadata={'_aapi_repr_': 'SpoolListRecipient'})
+    steps: list[SAPJobStep] = attrs.field(
+        kw_only=True, default=None, metadata={'_aapi_repr_': 'Steps'})
 
 
 @attrs.define

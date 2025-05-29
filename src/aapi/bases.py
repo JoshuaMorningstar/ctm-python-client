@@ -27,7 +27,7 @@ class AAPIObject:
             if ignore_event_type:
                 if not is_condition_or_event:
                     res['Type'] = self._type
-            elif self._type.startswith('Event'):
+            else:
                 res['Type'] = self._type
 
                 
