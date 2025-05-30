@@ -1609,7 +1609,7 @@ class JobSAPR3CREATE(JobSAPR3):
     @attrs.define
     class SAPJobStep(AAPIObject):
         variant: str = attrs.field(
-            kw_only=True, default=None, metadata={'__aapi_repr_': 'VariantName'})
+            kw_only=True, default=None, metadata={'_aapi_repr_': 'VariantName'})
         program_name: str = attrs.field(
             kw_only=True, default=None, metadata={'_aapi_repr_': 'ProgramName'})
         step_type: str = attrs.field(
