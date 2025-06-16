@@ -202,7 +202,7 @@ class BaseWorkflow(AbstractWorkflow):
                 f'Cannot connect objects of type {type(obj_src)} with {type(obj_dest)}. Connections can be made from/to Folder, SubFolder and Job')
 
         key_name = (srcpath, destpath)
-        event_name = f'{obj_src.object_name.replace(" ", "_")}-TO-{obj_dest.object_name.replace(" ", "_")}'
+        event_name = f'{srcpath.replace(" ", "_")}-TO-{destpath.replace(" ", "_")}'
         if event_name in self._connections:
             self._connections[event_name].append(key_name)
             count = len(self._connections[event_name])+1
