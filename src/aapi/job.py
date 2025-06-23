@@ -1610,10 +1610,22 @@ class JobSAPR3CREATE(JobSAPR3):
     class SAPJobStep(AAPIObject):
         variant: str = attrs.field(
             kw_only=True, default=None, metadata={'_aapi_repr_': 'VariantName'})
+        temporary_variant_list: list[SAPTemporaryVariant] = attrs.field(
+            kw_only=True, default=None, metadata={'_aapi_repr_':'TemporaryVariantParameters'}
+        )
         program_name: str = attrs.field(
             kw_only=True, default=None, metadata={'_aapi_repr_': 'ProgramName'})
         step_type: str = attrs.field(
             kw_only=True, default="ABAP", metadata={'_aapi_repr_': 'StepType'})
+        
+        @attrs.define
+        class SAPTemporaryVariant(AAPIObject):
+            _type: str = attrs.field(init=False, default='Simple', metadata={
+                '_aapi_repr_':"Type"})
+            name: str = attrs.field(
+                kw_only=True, default=None, metadata={'_aapi_repr_': 'Name'})
+            value: str = attrs.field(
+                kw_only=True, default=None, metadata={'_aapi_repr_':'Value'})
 
     @attrs.define
     class DetectSpawnedJob(AAPIObject):
