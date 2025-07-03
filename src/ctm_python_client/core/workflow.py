@@ -157,10 +157,11 @@ class BaseWorkflow(AbstractWorkflow):
                     else:
                         raise e
                 if folder:
-                    if isinstance(obj, Job) or isinstance(obj, AAPIJob):
-                        folder.job_list.append(obj)
-                    else:
+                    if isinstance(obj, SubFolder):
                         folder.sub_folder_list.append(obj)
+                    elif isinstance(obj, Job) or isinstance(obj, AAPIJob):
+                        folder.job_list.append(obj)
+                        
                 else:
                     # Folder does not exist, create folder
                     folder, parent_folder = self.create_folder_hierarchy(inpath)
